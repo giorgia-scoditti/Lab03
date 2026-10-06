@@ -1,5 +1,5 @@
 from deposito_strumenti import DepositoStrumenti
-from datetime import d # ???
+from datetime import datetime
 
 def menu():
     print("\n--- MENU DEPOSITO STRUMENTI ---")
