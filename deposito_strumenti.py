@@ -1,4 +1,5 @@
 from strumento import Strumento
+from prestito import Prestito
 
 class DepositoStrumenti:
     def __init__(self, nome, responsabile):
@@ -6,6 +7,7 @@ class DepositoStrumenti:
         self.nome = nome
         self.responsabile = responsabile
         self.strumenti = {}
+        self.prestiti = {}
 
     def carica_file_strumenti(self, file_path):
         """Carica gli strumenti dal file"""
@@ -28,23 +30,29 @@ class DepositoStrumenti:
 
     def aggiungi_strumento(self, tipo, marca, anno_acquisto, valore):
         """Aggiunge uno strumento nel deposito: aggiunge solo nel sistema e non aggiorna il file"""
-        # DA SISTEMARE!
         codice = "S" + str(len(self.strumenti) + 1)
-        nuovo_strumento = (tipo, marca, anno_acquisto, valore)
+        nuovo_strumento = Strumento(codice, tipo, marca, anno_acquisto, valore)
         self.strumenti[codice] = nuovo_strumento
-        return codice
+        return nuovo_strumento
 
     def strumenti_ordinati_per_marca(self):
         """Ordina gli strumenti per marca in ordine alfabetico"""
-        # DA SISTEMARE!
         from operator import attrgetter
-        lista_strumenti = list(self.strumenti)
+        lista_strumenti = list(self.strumenti.values())
         lista_strumenti.sort(key=attrgetter("marca"))
         return lista_strumenti
 
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
-        # TODO
+        # DA SISTEMARE!
+        codice = "P" + (str(len(self.prestiti) + 1))
+        if  id_strumento not in self.strumenti:
+            raise Exception("Lo strumento non esiste")
+        for prestito in self.prestiti.values():
+            if prestito.id_strumento == id_strumento:
+                raise Exception("Lo strumento è già in prestito")
+        nuovo_prestito = Prestito(codice, data, id_strumento, cognome_allievo)
+        self.prestiti[codice] = nuovo_prestito
 
     def termina_prestito(self, id_prestito):
         """Termina un prestito in atto"""
