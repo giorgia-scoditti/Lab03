@@ -5,4 +5,4 @@ class Prestito:
         self.id_strumento = id_strumento
         self.cognome_allievo = cognome_allievo
     def __str__(self):
-        return (f"{self.codice} - {self.data} - {self.id_strumento} - {self.cognome_allievo}")
+        return f"{self.codice} - {self.data} - {self.id_strumento} - {self.cognome_allievo}"

@@ -44,7 +44,6 @@ class DepositoStrumenti:
 
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
-        # DA SISTEMARE!
         codice = "P" + (str(len(self.prestiti) + 1))
         if  id_strumento not in self.strumenti:
             raise Exception("Lo strumento non esiste")
@@ -53,7 +52,10 @@ class DepositoStrumenti:
                 raise Exception("Lo strumento è già in prestito")
         nuovo_prestito = Prestito(codice, data, id_strumento, cognome_allievo)
         self.prestiti[codice] = nuovo_prestito
+        return nuovo_prestito
 
     def termina_prestito(self, id_prestito):
         """Termina un prestito in atto"""
-        # TODO
+        if id_prestito not in self.prestiti:
+            raise Exception("Il codice non corrisponde ad alcun prestito esistente")
+        self.prestiti.pop(id_prestito)
