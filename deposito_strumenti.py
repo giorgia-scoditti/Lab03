@@ -27,7 +27,6 @@ class DepositoStrumenti:
         except FileNotFoundError:
             print(f"Il file non è stato trovato")
 
-
     def aggiungi_strumento(self, tipo, marca, anno_acquisto, valore):
         """Aggiunge uno strumento nel deposito: aggiunge solo nel sistema e non aggiorna il file"""
         codice = "S" + str(len(self.strumenti) + 1)
